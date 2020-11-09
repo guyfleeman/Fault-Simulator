@@ -1,0 +1,3 @@
+NAND 1 2 3
+INPUT 1 2 -1
+OUTPUT 3 -1

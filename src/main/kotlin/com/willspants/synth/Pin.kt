@@ -20,9 +20,6 @@ data class Pin(val name: String,
     }
 
     fun propagate() {
-        net.getSinks().forEach {
-            it.booleanValue = booleanValue
-            it.isValid = true
-        }
+        net.propogate(booleanValue)
     }
 }

@@ -3,17 +3,22 @@ package com.willspants.synth
 import java.lang.RuntimeException
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.collections.HashSet
 
 class Net {
     private val _metaFileLineReferences: ArrayList<Int> = ArrayList()
 
-    var curBooleanVal: Boolean = false
-
     private val index: Int
     private var name: String
     private lateinit var driver: Pin
     private val sinks: HashSet<Pin> = HashSet()
+
+    private var isValid: Boolean = false
+    private var value: Boolean = false
+    private var fault: NetFaultType = NetFaultType.NONE
+    private val localFaults: MutableSet<Fault> = HashSet()
+    private val allFaults: MutableSet<Fault> = HashSet()
 
     constructor(index: Int, name: String = "NET_$index", driver: Pin) {
         this.index = index
@@ -73,5 +78,80 @@ class Net {
 
     fun hasValidConfiguration(): Boolean {
         return hasDriver() && hasSink()
+    }
+
+    fun setFaultValue(fault: NetFaultType) {
+        this.fault = fault
+    }
+
+    fun propogate(value: Boolean) {
+        when (fault) {
+            NetFaultType.S_A_0 -> {
+                this.value = false
+            }
+            NetFaultType.S_A_1 -> {
+                this.value = true
+            }
+            else -> {
+                this.value = value
+            }
+        }
+
+        this.isValid = true;
+
+        getSinks().forEach {
+            it.booleanValue = this.value
+            it.isValid = true
+        }
+    }
+
+    fun getNetValue(): Boolean {
+        if (fault == NetFaultType.S_A_0) {
+            return false
+        }
+
+        if (fault == NetFaultType.S_A_1) {
+            return true
+        }
+
+        return this.value
+    }
+
+    fun getIndex(): Int {
+        return index
+    }
+
+    fun getAllFaults(): MutableSet<Fault> {
+        return allFaults
+    }
+
+    fun addFault(fault: Fault) {
+        if (fault.sensitized(this)) {
+            allFaults.add(fault)
+        }
+    }
+
+    fun isControlling(type: GateControllingType): Boolean {
+        if (type == GateControllingType.ALL) {
+            return true
+        }
+
+        if (getNetValue() && type == GateControllingType.ONE) {
+            return true
+        }
+
+        if (!getNetValue() && type == GateControllingType.ZERO) {
+            return true
+        }
+
+        return false
+    }
+
+    fun isFaultControlling(type: GateControllingType): Boolean {
+        return !isControlling(type)
+    }
+
+    override fun toString(): String {
+        return "$name: $value ($isValid) - $allFaults"
     }
 }

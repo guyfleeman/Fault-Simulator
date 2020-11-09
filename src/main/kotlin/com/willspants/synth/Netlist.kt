@@ -131,6 +131,31 @@ class Netlist {
 
             return netlist
         }
+
+        fun parseFaultList(sourceFilename: String): HashMap<Int, NetFaultType> {
+            return parseFaultList(File(sourceFilename))
+        }
+
+        fun parseFaultList(sourceFile: File): HashMap<Int, NetFaultType> {
+            val faults: HashMap<Int, NetFaultType> = HashMap()
+
+            val reader = BufferedReader(FileReader(sourceFile))
+            reader.forEachLine {
+                val els = it.split(" ")
+                val net = els[0].toInt()
+                val sav = els[1].toInt()
+                var stuckAtValueType = NetFaultType.S_A_0;
+                if (sav == 1) {
+                    stuckAtValueType = NetFaultType.S_A_1;
+                }
+
+                faults[net] = stuckAtValueType
+            }
+
+            reader.close()
+
+            return faults
+        }
     }
 
     private val gates: HashSet<Gate> = HashSet()
@@ -139,6 +164,7 @@ class Netlist {
     private val globalOutputPins: HashSet<Pin> = HashSet()
 
     private val nets: HashMap<Int, Net> = HashMap()
+    private val netFaults: HashMap<Int, NetFaultType> = HashMap()
 
     private var inputVector: Array<Boolean>? = null
 
@@ -286,5 +312,48 @@ class Netlist {
 
     fun addGate(gate: Gate) {
         gates.add(gate)
+    }
+
+    fun loadNetFaults(faults: HashMap<Int, NetFaultType>) {
+        this.netFaults.putAll(faults)
+    }
+
+    fun applyFaults() {
+        netFaults.entries.forEach {
+            nets[it.key]!!.setFaultValue(it.value)
+        }
+    }
+
+    fun applyCheckpointFaults() {
+        globalInputPins.forEach {
+            val net = it.net
+            net.addFault(Fault(net.getIndex(), NetFaultType.S_A_0))
+            net.addFault(Fault(net.getIndex(), NetFaultType.S_A_1))
+        }
+
+        println("Starting fault list:")
+        globalInputPins.sortedBy { it.net.getIndex() }.forEach {
+            println(it.net.getAllFaults())
+        }
+
+        println("")
+        println("")
+    }
+
+    fun propagateDeduction() {
+        hierarchicalGates.forEach {
+            it.propagateDeduction()
+        }
+    }
+
+    fun printFaults() {
+        val faultSet: HashSet<Fault> = HashSet()
+        globalOutputPins.forEach {
+            faultSet.addAll(it.net.getAllFaults())
+        }
+
+        faultSet.sortedBy { it.netIndex }.forEach {
+            println(it)
+        }
     }
 }
