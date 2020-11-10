@@ -2,26 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b5fc2d8-a48f-4c40-97a2-fe4a842b5ae7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Fault.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/GateControllingType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/NetFaultType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/circuits/and_00.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/circuits/nand_00.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/circuits/nor_00.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/circuits/or_00.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/circuits/p3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/DeductionPropagationTests.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ProjectPart1VectorProcessing.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ProjectPart2DeductionCoverage.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ProjectPart2DeductionProcessing.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/ParserRunner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/ParserRunner.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Fault.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Fault.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Gate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Gate.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Net.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Net.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Netlist.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Netlist.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Pin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Pin.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,13 +91,13 @@
       <recent name="C:\Users\guyfleeman\IdeaProjects\ECE6140-Proj\src\test\resources\circuits" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.DeductionPropagationTests.test_s349f_iv0">
-    <configuration name="DeductionPropagationTests.test_and_01" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.ProjectPart2DeductionCoverage">
+    <configuration name="ProjectPart2DeductionCoverage" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;DeductionPropagationTests.test_and_01&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ProjectPart2DeductionCoverage&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -125,12 +112,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DeductionPropagationTests.test_s27_iv0" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ProjectPart2DeductionCoverage.test_s27_iv0" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;DeductionPropagationTests.test_s27_iv0&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ProjectPart2DeductionCoverage.test_s27_iv0&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -145,12 +132,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DeductionPropagationTests.test_s298f_iv0" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ProjectPart2DeductionCoverage.test_s298f_iv0" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;DeductionPropagationTests.test_s298f_iv0&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ProjectPart2DeductionCoverage.test_s298f_iv0&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -165,12 +152,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DeductionPropagationTests.test_s344f_iv0" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ProjectPart2DeductionProcessing" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;DeductionPropagationTests.test_s344f_iv0&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ProjectPart2DeductionProcessing&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -185,12 +172,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DeductionPropagationTests.test_s349f_iv0" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ProjectPart2DeductionProcessing.test_s27_iv0" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;DeductionPropagationTests.test_s349f_iv0&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ProjectPart2DeductionProcessing.test_s27_iv0&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -223,19 +210,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Gradle.DeductionPropagationTests.test_s27_iv0" />
-      <item itemvalue="Gradle.DeductionPropagationTests.test_s298f_iv0" />
-      <item itemvalue="Gradle.DeductionPropagationTests.test_and_01" />
-      <item itemvalue="Gradle.DeductionPropagationTests.test_s344f_iv0" />
-      <item itemvalue="Gradle.DeductionPropagationTests.test_s349f_iv0" />
+      <item itemvalue="Gradle.ProjectPart2DeductionProcessing.test_s27_iv0" />
+      <item itemvalue="Gradle.ProjectPart2DeductionProcessing" />
+      <item itemvalue="Gradle.ProjectPart2DeductionCoverage.test_s27_iv0" />
+      <item itemvalue="Gradle.ProjectPart2DeductionCoverage" />
+      <item itemvalue="Gradle.ProjectPart2DeductionCoverage.test_s298f_iv0" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.DeductionPropagationTests.test_s349f_iv0" />
-        <item itemvalue="Gradle.DeductionPropagationTests.test_s344f_iv0" />
-        <item itemvalue="Gradle.DeductionPropagationTests.test_s298f_iv0" />
-        <item itemvalue="Gradle.DeductionPropagationTests.test_s27_iv0" />
-        <item itemvalue="Gradle.DeductionPropagationTests.test_and_01" />
+        <item itemvalue="Gradle.ProjectPart2DeductionCoverage" />
+        <item itemvalue="Gradle.ProjectPart2DeductionCoverage.test_s298f_iv0" />
+        <item itemvalue="Gradle.ProjectPart2DeductionCoverage.test_s27_iv0" />
+        <item itemvalue="Gradle.ProjectPart2DeductionProcessing" />
+        <item itemvalue="Gradle.ProjectPart2DeductionProcessing.test_s27_iv0" />
       </list>
     </recent_temporary>
   </component>
@@ -273,25 +260,25 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="804" y="209" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1600308386918" />
-    <state width="2005" height="442" key="GridCell.Tab.0.bottom" timestamp="1604897877730">
+    <state width="2005" height="442" key="GridCell.Tab.0.bottom" timestamp="1604973330179">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="442" key="GridCell.Tab.0.bottom/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1604897877730" />
+    <state width="2005" height="442" key="GridCell.Tab.0.bottom/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1604973330179" />
     <state width="2005" height="324" key="GridCell.Tab.0.bottom/-1920.0.1920.1030/2560.0.1920.1040/4480.-346.1280.680/0.0.2048.1112@0.0.2048.1112" timestamp="1602458973874" />
-    <state width="2005" height="442" key="GridCell.Tab.0.center" timestamp="1604897877730">
+    <state width="2005" height="442" key="GridCell.Tab.0.center" timestamp="1604973330179">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="442" key="GridCell.Tab.0.center/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1604897877730" />
+    <state width="2005" height="442" key="GridCell.Tab.0.center/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1604973330179" />
     <state width="2005" height="324" key="GridCell.Tab.0.center/-1920.0.1920.1030/2560.0.1920.1040/4480.-346.1280.680/0.0.2048.1112@0.0.2048.1112" timestamp="1602458973874" />
-    <state width="2005" height="442" key="GridCell.Tab.0.left" timestamp="1604897877730">
+    <state width="2005" height="442" key="GridCell.Tab.0.left" timestamp="1604973330179">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="442" key="GridCell.Tab.0.left/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1604897877730" />
+    <state width="2005" height="442" key="GridCell.Tab.0.left/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1604973330179" />
     <state width="2005" height="324" key="GridCell.Tab.0.left/-1920.0.1920.1030/2560.0.1920.1040/4480.-346.1280.680/0.0.2048.1112@0.0.2048.1112" timestamp="1602458973874" />
-    <state width="2005" height="442" key="GridCell.Tab.0.right" timestamp="1604897877730">
+    <state width="2005" height="442" key="GridCell.Tab.0.right" timestamp="1604973330179">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="442" key="GridCell.Tab.0.right/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1604897877730" />
+    <state width="2005" height="442" key="GridCell.Tab.0.right/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1604973330179" />
     <state width="2005" height="324" key="GridCell.Tab.0.right/-1920.0.1920.1030/2560.0.1920.1040/4480.-346.1280.680/0.0.2048.1112@0.0.2048.1112" timestamp="1602458973874" />
     <state x="681" y="259" key="run.anything.popup" timestamp="1600040087372">
       <screen x="0" y="0" width="2048" height="1112" />

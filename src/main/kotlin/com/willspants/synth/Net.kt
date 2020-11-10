@@ -154,4 +154,12 @@ class Net {
     override fun toString(): String {
         return "$name: $value ($isValid) - $allFaults"
     }
+
+    fun toSimpleFaultString(): String {
+        return if (allFaults.isEmpty()) {
+            "$name is fault free"
+        } else {
+            "$name suck at ${allFaults.map{ it.getSimpleString() }}".padStart(32, ' ')
+        }
+    }
 }

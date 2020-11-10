@@ -1,10 +1,11 @@
 package com.willspants.synth
 
+import com.willspants.ParserRunner
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
 
-class Netlist {
+class Netlist(val name: String = "CKT") {
     companion object {
         private const val GLOBAL_INPUT_PIN_PREFIX = "I_GLB"
         private const val GLOBAL_OUTPUT_PIN_PREFIX = "O_GLB"
@@ -90,7 +91,7 @@ class Netlist {
         fun parseNetlist(sourceFile: File): Netlist {
             val reader = BufferedReader(FileReader(sourceFile))
 
-            val netlist = Netlist()
+            val netlist = Netlist(sourceFile.name)
 
             var lineCt = 1
             reader.forEachLine {
@@ -167,6 +168,12 @@ class Netlist {
     private val netFaults: HashMap<Int, NetFaultType> = HashMap()
 
     private var inputVector: Array<Boolean>? = null
+
+    private var numberOfFaults: Int = 0
+    private var maxFaults: Int = 0
+    var pctCoverage: Float = 0.0f
+    private var pctFmt: String = ""
+    private var allDiscoveredFaults: HashSet<Fault> = HashSet()
 
     fun validate(): Boolean {
         if (!isFullyConnected()) {
@@ -331,19 +338,32 @@ class Netlist {
             net.addFault(Fault(net.getIndex(), NetFaultType.S_A_1))
         }
 
-        println("Starting fault list:")
-        globalInputPins.sortedBy { it.net.getIndex() }.forEach {
-            println(it.net.getAllFaults())
-        }
+//        println("Starting fault list:")
+//        globalInputPins.sortedBy { it.net.getIndex() }.forEach {
+//            println(it.net.getAllFaults())
+//        }
 
-        println("")
-        println("")
+//        println("")
+//        println("")
+    }
+
+    fun cacheFaultsFromRun() {
+        allDiscoveredFaults.addAll(getFaultSet())
+    }
+
+    fun clearRunResults() {
+        nets.forEach { it.value.getAllFaults().clear() }
     }
 
     fun propagateDeduction() {
         hierarchicalGates.forEach {
             it.propagateDeduction()
         }
+
+        numberOfFaults = getFaultSet().size
+        maxFaults = nets.size * 2
+        pctCoverage = numberOfFaults.toFloat() / maxFaults.toFloat()
+        pctFmt = "%.2f".format(pctCoverage * 100)
     }
 
     fun printFaults() {
@@ -355,5 +375,55 @@ class Netlist {
         faultSet.sortedBy { it.netIndex }.forEach {
             println(it)
         }
+    }
+
+    fun getFaultSet(): HashSet<Fault> {
+        val faultSet: HashSet<Fault> = HashSet()
+        globalOutputPins.forEach {
+            faultSet.addAll(it.net.getAllFaults())
+        }
+        return faultSet
+    }
+
+    fun getMaxFaults(): Int {
+        return maxFaults
+    }
+
+    fun getNumberOfFaultsFromRun(): Int {
+        return numberOfFaults
+    }
+
+    fun getPercentDetectedFromRun(): Float {
+        return pctCoverage
+    }
+
+    fun getAllCachedFaults(): HashSet<Fault> {
+        return allDiscoveredFaults
+    }
+
+    fun getTotalNumberOfFaults(): Int {
+        return allDiscoveredFaults.size
+    }
+
+    fun getPercentDetectedFromAllRuns(): Float {
+        return (getTotalNumberOfFaults().toFloat() / maxFaults.toFloat()) * 100.0f
+    }
+
+    fun getFormattedFaults(): String {
+        val faultSet = getFaultSet()
+        var output = "Circuit: $name, " +
+                "IV: \"${ParserRunner.outputVectorToString(inputVector!!)}\", " +
+                "OV: \"${ParserRunner.outputVectorToString(getOutputVector())}\"\r\n"
+        output += "Faults Detected: $numberOfFaults ($numberOfFaults/$maxFaults) $pctFmt%\r\n"
+
+        output += "---------------*---------------\r\n"
+
+        faultSet.sortedBy { it.netIndex }.forEach {
+            output += "${it.getSimpleString()}\r\n".padStart(28, ' ')
+        }
+
+        output += "\r\n\r\n"
+
+        return output
     }
 }

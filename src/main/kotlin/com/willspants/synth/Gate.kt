@@ -124,37 +124,22 @@ class Gate(var gateFunction: GateFunction, private val inputPins: List<Pin>, pri
     }
 
     fun propagateDeduction() {
-        println("Propagating Faults for $gateFunction and net ${getDrivePin().net.getIndex()}")
-        getSinkPins().forEach {
-            println(it.net)
-        }
+//        println("Propagating Faults for $gateFunction and net ${getDrivePin().net.getIndex()}")
+//        getSinkPins().forEach {
+//            println(it.net)
+//        }
 
         val gateInversion = getInversion()
         val gateControllingType = getControlling()
 
         val allInputNets = HashSet(getSinkPins().map { it.net })
         val controllingInputNets = HashSet(getSinkPins().filter { it.net.isControlling(gateControllingType) }.map { it.net })
-        println("CINS: ${controllingInputNets.size}")
-        println("All Input Faults: ")
-        allInputNets.forEach {
-            println(it.getAllFaults())
-        }
-        println("")
-//        val controllingInputNets = HashSet(getSinkPins().filter { it.net.isFaultControlling(gateControllingType) }.map { it.net })
 
         val downstreamFaults: MutableSet<Fault> = HashSet()
         if (controllingInputNets.size == 2) {
-            println("no controlling inputs")
             inputPins.forEach { downstreamFaults.addAll(it.net.getAllFaults()) }
             downstreamFaults.add(Fault.createFromGate(this))
         } else {
-            println("controlling inputs")
-            /*
-            val allFaults: MutableSet<Fault> = HashSet()
-            allInputsNets.forEach { allFaults.addAll(it.getAllFaults()) }
-
-            */
-
             val nonControllingNets = allInputNets - controllingInputNets
             val allNonControllingFaults: MutableSet<Fault> = HashSet()
             nonControllingNets.forEach { allNonControllingFaults.addAll(it.getAllFaults()) }
@@ -162,97 +147,18 @@ class Gate(var gateFunction: GateFunction, private val inputPins: List<Pin>, pri
             val allControllingFaults: MutableSet<Fault> = HashSet()
             controllingInputNets.forEach { allControllingFaults.addAll(it.getAllFaults()) }
 
-            println("NCF: $allNonControllingFaults")
-            println("CF: $allControllingFaults")
-
             if (allControllingFaults.isEmpty()) {
                 downstreamFaults.add(Fault.createFromGate(this, true))
             } else {
                 var faultDifference = allControllingFaults - allNonControllingFaults
-                if (gateFunction == GateFunction.NAND || gateFunction == GateFunction.AND || gateFunction == GateFunction.NOR || gateFunction == GateFunction.OR) {
+                if (gateFunction == GateFunction.NAND || gateFunction == GateFunction.AND
+                    || gateFunction == GateFunction.NOR || gateFunction == GateFunction.OR) {
                     faultDifference =  allNonControllingFaults - allControllingFaults
                 }
                 downstreamFaults.addAll(faultDifference + Fault.createFromGate(this, true))
             }
         }
 
-        println("Downstream Faults: $downstreamFaults")
-        println("\r\n")
         getDrivePin().net.getAllFaults().addAll(downstreamFaults)
-
-        return
-
-        /*
-        val allInputFaults: HashMap<Int, NetFaultType> = HashMap()
-        getSinkPins().forEach {
-            val faults = it.net.getInductiveFaultList()
-            val netIndex = it.net.getIndex()
-            if (faults[netIndex] != null) {
-                allInputFaults[netIndex] = faults.getValue(netIndex)
-            }
-        }
-
-
-
-        when (gateFunction) {
-            // controlling value ALL
-            GateFunction.BUF, GateFunction.INV -> {
-                if (allInputFaults.isNotEmpty()) {
-                    val downstreamNet = getDrivePin().net
-
-                    // all faults are valid downstream
-                    downstreamNet.getInductiveFaultList().putAll(allInputFaults)
-
-                    allInputFaults.entries.forEach {
-                        if (gateInversion) {
-                            downstreamNet.getInductiveFaultList()[downstreamNet.getIndex()] = invertNetFaultType(it.value)
-                        } else {
-                            downstreamNet.getInductiveFaultList()[downstreamNet.getIndex()] = it.value
-                        }
-                    }
-                }
-            }
-            // controlling value '0'
-            GateFunction.AND, GateFunction.NAND -> {
-                val controllingValue = false
-                if (allInputFaults.entries.none { netFaultMatchesControlling(it.value, controllingValue) }) {
-                    val downstreamNet = getDrivePin().net
-                    downstreamNet.getInductiveFaultList().putAll(getSinkPins()[0].net.getInductiveFaultList())
-                    downstreamNet.getInductiveFaultList().putAll(getSinkPins()[1].net.getInductiveFaultList())
-                    downstreamNet.getInductiveFaultList()[downstreamNet.getIndex()] = boolToNetFaultType(controllingValue xor gateInversion)
-                } else {
-                    val downstreamNet = getDrivePin().net
-                    allInputFaults.entries.forEach { llFault ->
-                        if (netFaultMatchesControlling(llFault.value, controllingValue)) {
-                            downstreamNet.getInductiveFaultList().putAll(getSinkPins().first { it.net.getIndex() == llFault.key }.net.getInductiveFaultList())
-                        }
-                    }
-                    downstreamNet.getInductiveFaultList()[downstreamNet.getIndex()] = boolToNetFaultType(controllingValue xor gateInversion)
-                }
-            }
-            // controlling value '1'
-            GateFunction.OR, GateFunction.NOR -> {
-                val controllingValue = true
-                if (allInputFaults.entries.none { netFaultMatchesControlling(it.value, controllingValue) }) {
-                    val downstreamNet = getDrivePin().net
-                    downstreamNet.getInductiveFaultList().putAll(getSinkPins()[0].net.getInductiveFaultList())
-                    downstreamNet.getInductiveFaultList().putAll(getSinkPins()[1].net.getInductiveFaultList())
-                    downstreamNet.getInductiveFaultList()[downstreamNet.getIndex()] = boolToNetFaultType(controllingValue xor gateInversion)
-                } else {
-                    val downstreamNet = getDrivePin().net
-                    allInputFaults.entries.forEach { llFault ->
-                        if (netFaultMatchesControlling(llFault.value, controllingValue)) {
-                            downstreamNet.getInductiveFaultList().putAll(getSinkPins().first { it.net.getIndex() == llFault.key }.net.getInductiveFaultList())
-                        }
-                    }
-                    downstreamNet.getInductiveFaultList()[downstreamNet.getIndex()] = boolToNetFaultType(controllingValue xor gateInversion)
-                }
-            }
-            // controlling value ALL
-            GateFunction.XOR, GateFunction.XNOR -> {
-
-            }
-        }
-        */
     }
 }

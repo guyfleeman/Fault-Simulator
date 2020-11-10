@@ -1,5 +1,7 @@
 package com.willspants.synth
 
+import java.util.*
+
 class Fault(val netIndex: Int, val faultType: NetFaultType) {
     companion object {
         fun createFromGate(gate: Gate, hasControllingInputs: Boolean = false): Fault {
@@ -58,5 +60,33 @@ class Fault(val netIndex: Int, val faultType: NetFaultType) {
 
     override fun toString(): String {
         return "NET: $netIndex stuck at value: $faultType"
+    }
+
+    fun getSimpleString(): String {
+        return "NET_$netIndex stuck at value ${getFaultDecimalValue()}"
+    }
+
+    fun getFaultDecimalValue(): String {
+        return if (faultType == NetFaultType.S_A_0) {
+            "0"
+        } else {
+            "1"
+        }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (other == null) {
+            return false;
+        }
+
+        if (other !is Fault) {
+            return false
+        }
+
+        return other.netIndex == this.netIndex && other.faultType == this.faultType
+    }
+
+    override fun hashCode(): Int {
+        return Objects.hash(this.netIndex, this.faultType)
     }
 }
