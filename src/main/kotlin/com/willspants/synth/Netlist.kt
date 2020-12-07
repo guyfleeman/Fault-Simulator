@@ -426,4 +426,99 @@ class Netlist(val name: String = "CKT") {
 
         return output
     }
+
+    fun podemSetup() {
+        globalInputPins.forEach {
+            it.podemValue = PodemValue.UNKNOWN
+        }
+
+        nets.forEach {
+            it.value.podemImpliedValue = PodemValue.UNKNOWN
+        }
+    }
+
+    fun podemObjective(): Pair<Net, PodemValue>? {
+        return null
+    }
+
+    fun podemBacktrace(obj: Pair<Net, PodemValue>): Pair<Pin, PodemValue>? {
+        var curNet = obj.first
+        var btVal = obj.first.podemImpliedValue
+
+        while (true) {
+            val netDriver = curNet.getDriver()
+            // reached a PI
+            if (netDriver.parentGate == null || netDriver in globalInputPins) {
+                break
+            }
+
+            // we need to keep going
+
+            val netDriverGate = netDriver.parentGate!!
+            if (netDriverGate.getSinkPins()[0].podemValue == PodemValue.UNKNOWN) {
+                curNet = netDriverGate.getSinkPins()[0].net
+            } else if (netDriverGate.getSinkPins().size == 2 && netDriverGate.getSinkPins()[1].podemValue == PodemValue.UNKNOWN) {
+                curNet = netDriverGate.getSinkPins()[1].net
+            } else {
+                // net is already spoken for?
+                return null
+            }
+
+            if (netDriverGate.getInversion()) {
+                btVal = invertPodemValueWeak(btVal)
+            }
+        }
+
+        return Pair(curNet.getDriver(), btVal)
+    }
+
+    fun podemImply(impl: Pair<Pin, PodemValue>) {
+        if (impl.first !in globalInputPins) {
+            throw java.lang.RuntimeException("implying on non input pin, backtrace error?")
+        }
+
+        hierarchicalGates.forEach {
+            it.podemPropagate()
+        }
+    }
+
+//    fun podem(): Boolean {
+//        if (globalOutputPins.any { podemValueIsFault(it.podemValue) }) {
+//            return true
+//        }
+//
+////        for (p in globalOutputPins) {
+////            if (p.podemValue == PodemValue.F_D || p.podemValue == PodemValue.F_D_BAR) {
+////                return true
+////            }
+////        }
+//
+//        val obj: Pair<Net, PodemValue>? = podemObjective()
+//        if (obj == null) {
+//            println("no objective left")
+//            return false
+//        }
+//
+//        val set: Pair<Net, PodemValue>? = podemBacktrace()
+//        if (set == null) {
+//            println("no backtrace available")
+//            return false
+//        }
+//
+//        podemImply(set)
+//
+//        var res = podem()
+//        if (res) {
+//            return true
+//        }
+//
+//        set.first.podemImpliedValue = invertPodemValueWeak(set.first.podemImpliedValue)
+//        podemImply(set)
+//
+//        res = podem()
+//        if (res) {
+//        }
+//
+//        return false
+//    }
 }

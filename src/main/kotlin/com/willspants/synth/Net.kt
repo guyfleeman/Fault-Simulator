@@ -16,6 +16,8 @@ class Net {
 
     private var isValid: Boolean = false
     private var value: Boolean = false
+    var podemImpliedValueValid = false
+    var podemImpliedValue: PodemValue = PodemValue.UNSET
     private var fault: NetFaultType = NetFaultType.NONE
     private val localFaults: MutableSet<Fault> = HashSet()
     private val allFaults: MutableSet<Fault> = HashSet()
@@ -84,6 +86,10 @@ class Net {
         this.fault = fault
     }
 
+    fun getFaultValue(): NetFaultType {
+        return fault
+    }
+
     fun propogate(value: Boolean) {
         when (fault) {
             NetFaultType.S_A_0 -> {
@@ -102,6 +108,12 @@ class Net {
         getSinks().forEach {
             it.booleanValue = this.value
             it.isValid = true
+        }
+    }
+
+    fun podemPropagate() {
+        getSinks().forEach {
+            it.podemValue = podemImpliedValue
         }
     }
 

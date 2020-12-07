@@ -18,6 +18,11 @@ class ProjectPart2DeductionProcessing {
     }
 
     @Test
+    fun test_s344_sup_test() {
+
+    }
+
+    @Test
     fun test_s27_iv1() {
         val circuit = Netlist.parseNetlist(CIRCUIT_S27)
         val inputVectorStr = "0101001"

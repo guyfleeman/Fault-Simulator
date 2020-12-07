@@ -5,6 +5,7 @@ data class Pin(val name: String,
                val direction: PinDirection,
                var net: Net,
                var booleanValue: Boolean = false,
+               var podemValue: PodemValue = PodemValue.UNKNOWN,
                var isValid: Boolean = false,
                val _metaFileLineReference: Int = -1) {
     var parentGate: Gate? = null
@@ -21,5 +22,10 @@ data class Pin(val name: String,
 
     fun propagate() {
         net.propogate(booleanValue)
+    }
+
+    fun podemPropagate() {
+        net.podemImpliedValue = podemValue
+        net.podemPropagate()
     }
 }

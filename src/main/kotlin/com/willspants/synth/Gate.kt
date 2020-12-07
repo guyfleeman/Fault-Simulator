@@ -56,6 +56,24 @@ class Gate(var gateFunction: GateFunction, private val inputPins: List<Pin>, pri
                 }
             }
         }
+
+        fun getPodemControllingValue(gate: Gate): PodemValue {
+            return getPodemControllingValue(gate.gateFunction)
+        }
+
+        fun getPodemControllingValue(type: GateFunction): PodemValue {
+            return when (type) {
+                GateFunction.AND, GateFunction.NAND -> {
+                    PodemValue.L_FALSE
+                }
+                GateFunction.OR, GateFunction.NOR -> {
+                    PodemValue.L_TRUE
+                }
+                else -> {
+                    PodemValue.UNKNOWN
+                }
+            }
+        }
     }
 
     private val pins: HashSet<Pin> = HashSet()
@@ -160,5 +178,103 @@ class Gate(var gateFunction: GateFunction, private val inputPins: List<Pin>, pri
         }
 
         getDrivePin().net.getAllFaults().addAll(downstreamFaults)
+    }
+
+    fun podemPropagate() {
+        when (gateFunction) {
+            GateFunction.BUF -> {
+                outputPin.podemValue = inputPins[0].podemValue
+            }
+            GateFunction.INV -> {
+                outputPin.podemValue = invertPodemValueWeak(inputPins[0].podemValue)
+            }
+            GateFunction.AND -> {
+                if (inputPins.any { it.podemValue == getPodemControllingValue(gateFunction) }) {
+                    outputPin.podemValue = PodemValue.L_FALSE
+                    return
+                }
+
+                if (inputPins.any { podemValueIsFault(it.podemValue) } && inputPins.any { it.podemValue == invertPodemValueWeak(
+                        getPodemControllingValue(gateFunction))}) {
+                    outputPin.podemValue = inputPins.first { podemValueIsFault(it.podemValue) }.podemValue
+                    return
+                }
+
+                if (inputPins.any { it.podemValue == PodemValue.UNKNOWN || it.podemValue == PodemValue.UNSET}) {
+                    outputPin.podemValue = PodemValue.UNKNOWN
+                    return
+                }
+
+                outputPin.podemValue = PodemValue.L_TRUE
+            }
+            GateFunction.NAND -> {
+                if (inputPins.any { it.podemValue == getPodemControllingValue(gateFunction) }) {
+                    outputPin.podemValue = PodemValue.L_TRUE
+                    return
+                }
+
+                if (inputPins.any { podemValueIsFault(it.podemValue) } && inputPins.any { it.podemValue == invertPodemValueWeak(
+                        getPodemControllingValue(gateFunction))}) {
+                    outputPin.podemValue = invertPodemValueWeak(inputPins.first { podemValueIsFault(it.podemValue) }.podemValue)
+                    return
+                }
+
+                if (inputPins.any { it.podemValue == PodemValue.UNKNOWN || it.podemValue == PodemValue.UNSET}) {
+                    outputPin.podemValue = PodemValue.UNKNOWN
+                    return
+                }
+
+                outputPin.podemValue = PodemValue.L_FALSE
+            }
+            GateFunction.OR -> {
+                if (inputPins.any { it.podemValue == getPodemControllingValue(gateFunction) }) {
+                    outputPin.podemValue = PodemValue.L_TRUE
+                    return
+                }
+
+                if (inputPins.any { podemValueIsFault(it.podemValue) } && inputPins.any { it.podemValue == invertPodemValueWeak(
+                        getPodemControllingValue(gateFunction))}) {
+                    outputPin.podemValue = inputPins.first { podemValueIsFault(it.podemValue) }.podemValue
+                    return
+                }
+
+                if (inputPins.any { it.podemValue == PodemValue.UNKNOWN || it.podemValue == PodemValue.UNSET}) {
+                    outputPin.podemValue = PodemValue.UNKNOWN
+                    return
+                }
+
+                outputPin.podemValue = PodemValue.L_FALSE
+            }
+            GateFunction.NOR -> {
+                if (inputPins.any { it.podemValue == getPodemControllingValue(gateFunction) }) {
+                    outputPin.podemValue = PodemValue.L_FALSE
+                    return
+                }
+
+                if (inputPins.any { podemValueIsFault(it.podemValue) } && inputPins.any { it.podemValue == invertPodemValueWeak(
+                        getPodemControllingValue(gateFunction))}) {
+                    outputPin.podemValue = invertPodemValueWeak(inputPins.first { podemValueIsFault(it.podemValue) }.podemValue)
+                    return
+                }
+
+                if (inputPins.any { it.podemValue == PodemValue.UNKNOWN || it.podemValue == PodemValue.UNSET}) {
+                    outputPin.podemValue = PodemValue.UNKNOWN
+                    return
+                }
+
+                outputPin.podemValue = PodemValue.L_TRUE
+            }
+            else -> throw RuntimeException("unsupported gate type")
+        }
+
+        outputPin.net.podemImpliedValue = outputPin.podemValue
+    }
+
+    fun podemIsOnDFrontier(): Boolean {
+        if (inputPins.any { podemValueIsFault(it.podemValue) } && outputPin.podemValue == PodemValue.UNKNOWN) {
+            return true
+        }
+
+        return false
     }
 }
