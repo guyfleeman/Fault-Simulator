@@ -121,9 +121,9 @@ class ProjectPart2DeductionProcessing {
     }
 
     companion object {
-        const val CIRCUIT_S27 = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\s27.txt"
-        const val CIRCUIT_S298F_2 = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\s298f_2.txt"
-        const val CIRCUIT_S344F_2 = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\s344f_2.txt"
-        const val CIRCUIT_S349F_2 = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\s349f_2.txt"
+        const val CIRCUIT_S27 = ".\\src\\main\\resources\\circuits\\s27.txt"
+        const val CIRCUIT_S298F_2 = ".\\src\\main\\resources\\circuits\\s298f_2.txt"
+        const val CIRCUIT_S344F_2 = ".\\src\\main\\resources\\circuits\\s344f_2.txt"
+        const val CIRCUIT_S349F_2 = ".\\src\\main\\resources\\circuits\\s349f_2.txt"
     }
 }

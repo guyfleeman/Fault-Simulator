@@ -284,14 +284,13 @@ class DeductionPropagationTests {
     }
 
     companion object {
-        const val CIRCUIT_OR = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\or_00.txt"
-        const val CIRCUIT_NOR = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\nor_00.txt"
-        const val CIRCUIT_AND = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\and_00.txt"
-        const val CIRCUIT_NAND = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\nand_00.txt"
-        const val CIRCUIT_P3 = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\p3.txt"
-        const val CIRCUIT_S27 = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\s27.txt"
-        const val CIRCUIT_S298F_2 = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\s298f_2.txt"
-        const val CIRCUIT_S344F_2 = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\s344f_2.txt"
-        const val CIRCUIT_S349F_2 = "C:\\Users\\guyfleeman\\IdeaProjects\\ECE6140-Proj\\src\\main\\resources\\circuits\\s349f_2.txt"
+        const val CIRCUIT_OR = ".\\src\\main\\resources\\circuits\\or_00.txt"
+        const val CIRCUIT_NOR = ".\\src\\main\\resources\\circuits\\nor_00.txt"
+        const val CIRCUIT_AND = ".\\src\\main\\resources\\circuits\\and_00.txt"
+        const val CIRCUIT_NAND = ".\\src\\main\\resources\\circuits\\nand_00.txt"
+        const val CIRCUIT_S27 = ".\\src\\main\\resources\\circuits\\s27.txt"
+        const val CIRCUIT_S298F_2 = ".\\src\\main\\resources\\circuits\\s298f_2.txt"
+        const val CIRCUIT_S344F_2 = ".\\src\\main\\resources\\circuits\\s344f_2.txt"
+        const val CIRCUIT_S349F_2 = ".\\src\\main\\resources\\circuits\\s349f_2.txt"
     }
 }

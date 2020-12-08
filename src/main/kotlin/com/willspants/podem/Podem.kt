@@ -215,9 +215,7 @@ class Podem(private val file: File, private val stuckNet: Int, private val stuck
     private fun imply(implication: Pair<Int, PodemValue>) {
         simStateRecord.add(HashMap(simState))
         simState[implication.first] = implication.second
-        //println("propagate")
         propagateValues()
-        //println("update d f")
         updateDFrontier()
     }
 

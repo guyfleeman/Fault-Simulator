@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b5fc2d8-a48f-4c40-97a2-fe4a842b5ae7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/podem/Podem.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/podem/PodemGate.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/podem/PodemValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/PodemValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ProjectPart3PodemExtraTests.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ProjectPart3PodemGeneration.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/ProjectApplication.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fault_lists/deductive_s27_1101101_complete.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fault_lists/s27_1110101.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/fault_lists/deductive_s27_1101101_complete.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/fault_lists/s27_1110101.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Gate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Gate.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Net.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Net.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/podem/Podem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/podem/Podem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Netlist.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Netlist.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Pin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/willspants/synth/Pin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/DeductionPropagationTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/DeductionPropagationTests.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/ProjectPart2DeductionCoverage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ProjectPart2DeductionCoverage.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/ProjectPart2DeductionProcessing.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ProjectPart2DeductionProcessing.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/ProjectPart3PodemExtraTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ProjectPart3PodemExtraTests.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +49,12 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ECE6140-Proj" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ECE6140-Proj" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
@@ -55,6 +62,11 @@
                 <item name="ECE6140-Proj" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ECE6140-Proj" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -82,9 +94,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/circuits" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/resources/fault_lists" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\guyfleeman\IdeaProjects\ECE6140-Proj\src\test\resources\fault_lists" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.willspants.synth" />
     </key>
@@ -92,18 +107,57 @@
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\guyfleeman\IdeaProjects\ECE6140-Proj\src\main\resources\circuits" />
+      <recent name="C:\Users\guyfleeman\IdeaProjects\ECE6140-Proj\src\test\resources\fault_lists" />
       <recent name="C:\Users\guyfleeman\IdeaProjects\ECE6140-Proj\src\main\resources" />
+      <recent name="C:\Users\guyfleeman\IdeaProjects\ECE6140-Proj\src\main\resources\circuits" />
       <recent name="C:\Users\guyfleeman\IdeaProjects\ECE6140-Proj\src\test\resources\circuits" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.ProjectPart3PodemGeneration">
-    <configuration name="ProjectPart3PodemExtraTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ECE6140-Proj [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ProjectPart3PodemExtraTests&quot;" />
+        <option name="scriptParameters" value="s27.txt s27_iv0.txt" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ECE6140-Proj [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="s27.txt s27_iv0.txt" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProjectPart2DeductionProcessing" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;ProjectPart2DeductionProcessing&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -118,12 +172,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ProjectPart3PodemExtraTests.s27_n18_sa1" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ProjectPart3PodemExtraTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ProjectPart3PodemExtraTests.s27_n18_sa1&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ProjectPart3PodemExtraTests&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -158,46 +212,6 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ProjectPart3PodemGeneration.generateVectorsS349" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ProjectPart3PodemGeneration.generateVectorsS349&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":cleanTest" />
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ProjectPart3PodemGeneration.whereAmI" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ProjectPart3PodemGeneration.whereAmI&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":cleanTest" />
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -216,19 +230,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Gradle.ProjectPart3PodemGeneration.generateVectorsS349" />
-      <item itemvalue="Gradle.ProjectPart3PodemGeneration" />
-      <item itemvalue="Gradle.ProjectPart3PodemGeneration.whereAmI" />
+      <item itemvalue="Gradle.ProjectPart2DeductionProcessing" />
+      <item itemvalue="Gradle.ECE6140-Proj [clean]" />
+      <item itemvalue="Gradle.ECE6140-Proj [test]" />
       <item itemvalue="Gradle.ProjectPart3PodemExtraTests" />
-      <item itemvalue="Gradle.ProjectPart3PodemExtraTests.s27_n18_sa1" />
+      <item itemvalue="Gradle.ProjectPart3PodemGeneration" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.ProjectPart3PodemGeneration" />
-        <item itemvalue="Gradle.ProjectPart3PodemExtraTests.s27_n18_sa1" />
         <item itemvalue="Gradle.ProjectPart3PodemExtraTests" />
-        <item itemvalue="Gradle.ProjectPart3PodemGeneration.whereAmI" />
-        <item itemvalue="Gradle.ProjectPart3PodemGeneration.generateVectorsS349" />
+        <item itemvalue="Gradle.ECE6140-Proj [test]" />
+        <item itemvalue="Gradle.ECE6140-Proj [clean]" />
+        <item itemvalue="Gradle.ProjectPart2DeductionProcessing" />
       </list>
     </recent_temporary>
   </component>
@@ -250,10 +264,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1601763107691" />
-    <state x="771" y="359" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601762571974">
+    <state x="771" y="359" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607393756880">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="771" y="359" key="#com.intellij.fileTypes.FileTypeChooser/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1601762571974" />
+    <state x="771" y="359" key="#com.intellij.fileTypes.FileTypeChooser/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1607393756880" />
     <state x="569" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600308450629">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -266,25 +280,25 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="804" y="209" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1600308386918" />
-    <state width="2005" height="391" key="GridCell.Tab.0.bottom" timestamp="1607309388202">
+    <state width="2005" height="391" key="GridCell.Tab.0.bottom" timestamp="1607400795107">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="391" key="GridCell.Tab.0.bottom/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1607309388202" />
+    <state width="2005" height="391" key="GridCell.Tab.0.bottom/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1607400795107" />
     <state width="2005" height="324" key="GridCell.Tab.0.bottom/-1920.0.1920.1030/2560.0.1920.1040/4480.-346.1280.680/0.0.2048.1112@0.0.2048.1112" timestamp="1602458973874" />
-    <state width="2005" height="391" key="GridCell.Tab.0.center" timestamp="1607309388202">
+    <state width="2005" height="391" key="GridCell.Tab.0.center" timestamp="1607400795107">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="391" key="GridCell.Tab.0.center/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1607309388202" />
+    <state width="2005" height="391" key="GridCell.Tab.0.center/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1607400795107" />
     <state width="2005" height="324" key="GridCell.Tab.0.center/-1920.0.1920.1030/2560.0.1920.1040/4480.-346.1280.680/0.0.2048.1112@0.0.2048.1112" timestamp="1602458973874" />
-    <state width="2005" height="391" key="GridCell.Tab.0.left" timestamp="1607309388202">
+    <state width="2005" height="391" key="GridCell.Tab.0.left" timestamp="1607400795107">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="391" key="GridCell.Tab.0.left/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1607309388202" />
+    <state width="2005" height="391" key="GridCell.Tab.0.left/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1607400795107" />
     <state width="2005" height="324" key="GridCell.Tab.0.left/-1920.0.1920.1030/2560.0.1920.1040/4480.-346.1280.680/0.0.2048.1112@0.0.2048.1112" timestamp="1602458973874" />
-    <state width="2005" height="391" key="GridCell.Tab.0.right" timestamp="1607309388202">
+    <state width="2005" height="391" key="GridCell.Tab.0.right" timestamp="1607400795107">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="391" key="GridCell.Tab.0.right/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1607309388202" />
+    <state width="2005" height="391" key="GridCell.Tab.0.right/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1607400795107" />
     <state width="2005" height="324" key="GridCell.Tab.0.right/-1920.0.1920.1030/2560.0.1920.1040/4480.-346.1280.680/0.0.2048.1112@0.0.2048.1112" timestamp="1602458973874" />
     <state x="664" y="171" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607303788463">
       <screen x="0" y="0" width="2048" height="1112" />
